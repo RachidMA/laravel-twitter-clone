@@ -1,0 +1,136 @@
+
+.main{
+    overflow-x: hidden;
+}
+
+.card-container .card{
+    transition: all .5s;
+    
+}
+.card-container a{
+    text-decoration: none;
+}
+.card-feeds{
+    background-image: linear-gradient(to right, rgba(10, 10, 85, 0.925) 30%, rgba(0, 0, 255, 0.76));
+}
+.card-container .card:hover{
+    transform: translateY(-10px); 
+    border-bottom: 1rem black;
+    border-bottom: solid darkblue .5rem;
+}
+.navbar .container{
+    height: 5rem;
+    font-size: large;
+}
+.navbar-brand {
+    font-size: x-large;
+    color: white;
+    transition: all 1s;
+    padding: .5rem .7rem;
+}
+.container  .navbar-brand:hover {
+    color: black;
+    box-shadow: 2px 2px 4px white;
+    transform: translateY(-5px);
+    background-image: linear-gradient(to right, rgba(10, 10, 85, 0.575), blue);
+}
+.navbar-nav .nav-item{
+    transition: all 1s;
+}
+
+.nav-item.nav-item-register{
+    border: solid 1px whitesmoke;
+}
+.navbar-nav .nav-item:hover{
+    background-image: linear-gradient(to right, rgba(10, 10, 85, 0.575), blue);
+}
+.navbar-nav .nav-login{
+    background-color: gray;
+}
+
+/*========styling footer==========*/
+footer {
+    background-color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+}
+/*=========end footer=========*/
+
+/*========STYLING FLASH MESSAGES=======*/
+.cross-close{
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+/*=====END FLASH MESSAGES=======*/
+/*=======STYLING SIDE BAR LINKS=====*/
+.main-content{
+    position: relative;
+}
+.side-bar-links{
+    /* background-color: red; */
+    height: 100%;
+    /* top: 0;
+    left:0;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden; */
+}
+.side-bar-links-list ul, .side-bar-user-data ul{
+    list-style: none;
+    text-align: center;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.side-bar-links-list ul{
+    height: 20rem;
+    width: 15rem;
+}
+.side-bar-user-data ul{
+    height: 10rem;
+    width: 15rem;
+}
+.side-bar-user-data ul li {
+    margin-bottom: 1rem;
+}
+.side-bar-links-list ul a, .side-bar-user-data ul li a{
+    text-decoration: none;
+    color: black;
+}
+.side-bar-links-list ul a:hover , .side-bar-user-data ul li a:hover{
+    color:  rgba(10, 10, 85, 0.575);
+}
+.side-bar-links-list ul li:not(:last-child){
+    margin-bottom: 2rem;
+}
+.side-bar-search{
+    height: 35%;
+    margin-top: 1rem;
+}
+/*=========END SIDE BAR LINKS========*/
+/*=========STYLING JOB CARD=======*/
+.job-card{
+    background-color: red;
+}
+.job-card .profile-image{
+    width: 70%;
+    height: 30%;
+    background-color: blue;
+    display: flex;
+    margin-bottom: 1rem;
+}
+.job-card .profile-image img{
+    width: 4rem;
+    height: 4rem;
+    margin: .5rem ;
+    border-radius: 50%;
+}
+/*==========END JOB CARD=========*/
+footer{
+    background-color: rgba(128, 128, 128, 0.24);
+    box-shadow: 2px 2px 10px black;
+}
