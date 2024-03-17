@@ -5,9 +5,6 @@
 @section('content')
 
 @include('includes.main-components.job_card')
-@include('includes.main-components.job_card')
-@include('includes.main-components.job_card')
-@include('includes.main-components.job_card')
 
 <!-- 
     

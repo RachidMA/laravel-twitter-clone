@@ -40,16 +40,24 @@
             </div>
         </div>
         @endif
-        <main class="main vh-100 py-4">
-            <div class=" main-content h-100 row ">
-                @include('includes.main-components.side_bar_links')
-                <div class=" col-6 bg-danger">
-                    <div class="main-content-container bg-light">
-                        @yield('content')
-                    </div>
-                </div>
-                @include('includes.main-components.side_bar_search')
+        <main>
+            @if (!request()->is('/', 'login', 'register'))
+            <div class="user-bar  ">
+                <section class="user ">
+                    @include('includes.main-components.side_bar_links')
+                </section>
             </div>
+            @endif
+            <section class="content {{request()->is('/', 'login', 'register') ? 'w-100' : ''}}">
+                @yield('content')
+            </section>
+            @if (!request()->is('/', 'login', 'register'))
+            <div class="search-bar">
+                <section class="search">
+                    @include('includes.main-components.side_bar_search')
+                </section>
+            </div>
+            @endif
         </main>
     </div>
 </body>

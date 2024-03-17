@@ -17,7 +17,7 @@ class FeedController extends Controller
             return redirect()->route('login');
         }
 
-        return redirect()->route('feeds');
+        return view('feeds');
 
         //IF THERE IS NO SEARCH QUERY, RETURN  ALL THE POSTS FROM THE DATABASE
 
