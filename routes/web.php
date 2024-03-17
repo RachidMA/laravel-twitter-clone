@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -24,5 +25,9 @@ Route::get('/', function () {
 //ROUTE FOR USER
 Route::get('/feeds', [FeedController::class, 'index'])->name('feeds')->middleware(['auth']);
 Route::get('/profile/create', [ProfileController::class, 'create'])->name('user.profile.create')->middleware(['auth']);
+//TODO:ADD ROUTE TO STORE PROFILE FORM DATA
+Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store')->middleware(['auth']);
+Route::get('/users/{user}/profile', [ProfileController::class, 'index'])->name('users.profile.show')->middleware(['auth']);
+
 
 Auth::routes();
