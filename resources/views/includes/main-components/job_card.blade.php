@@ -1,18 +1,18 @@
-<div class="job-card col-md-8 w-100 ">
+<div class="job-card col-md-8 w-100 pb-4">
     <div class="card card-bg w-100 p-2 ">
-        <div class="profile-image border border-light rounded shadow">
+        <div class="profile-image border border-light rounded shadow d-flex">
             <img src="img/profile.png" alt="" class="">
-            <div class="nick-name">
-                <p>NICKNAME</p>
-                <p>NICKNAME</p>
+            <div class="nick-name mt-2">
+                <a href="#" class="link-info" title="See Profile">{{$job->profile->nickName}}</a><br>
             </div>
         </div>
-        <div class="card-content border border-light rounded shadow p-2">
-            <h4 class="card-title">THIS IS TITLE</h4>
-            <div class="card-description pb-4">
-                THIS IS DESCRIPTION THIS IS DESCRIPTION THIS IS DESCRIPTION THIS IS DESCRIPTION
-                THIS IS DESCRIPTION THIS IS DESCRIPTION THIS IS DESCRIPTION THIS IS DESCRIPTION
-                THIS IS DESCRIPTION THIS IS DESCRIPTION THIS IS DESCRIPTION THIS IS DESCRIPTION
+        <div class="card-content border border-light rounded shadow p-4">
+            <a href="{{route('jobs.show', ['job'=>$job->id])}}" class="card-title h4 link-info" title="Read More">{{$job->title}}</a><span>
+                {{$job->createdAt()}}
+            </span>
+
+            <div class="card-description pb-4 ">
+                {{$job->description}}
             </div>
             <div class="card-image w-100 text-center ">
                 <img src="img/job.png" alt="" class="w-50 h-50">

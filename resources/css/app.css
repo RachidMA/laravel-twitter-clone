@@ -153,10 +153,8 @@ footer {
 /*=========END SIDE BAR LINKS========*/
 /*=========STYLING JOB CARD=======*/
 
-.job-card .profile-image{
-    width: 70%;
-    height: 30%;
-    display: flex;
+
+.job-card div:last-child{
     margin-bottom: 1rem;
 }
 .job-card .profile-image img{
@@ -167,6 +165,23 @@ footer {
 }
 .card-bg{
     background-color: rgba(126, 176, 190, 0.151);
+}
+.card-description{
+    text-overflow:ellipsis;
+    overflow:hidden; 
+    width: 500px; 
+    height: 2em;
+    white-space: nowrap;
+    margin-top: 1rem;
+}
+
+.card-title , .nick-name a{
+    text-decoration: none;
+    padding: .3rem;
+}
+.card-title:hover , .nick-name a:hover{
+    text-decoration: underline;
+    
 }
 /*==========END JOB CARD=========*/
 footer{

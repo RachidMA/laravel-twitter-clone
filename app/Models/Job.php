@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,7 +24,7 @@ class Job extends Model
 
     public function  profile()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(Profile::class, 'profiles_id');
     }
 
     public function comments()
@@ -34,5 +35,10 @@ class Job extends Model
     public function comment()
     {
         return $this->hasOne(Comment::class)->latest();
+    }
+
+    public function createdAt()
+    {
+        return Carbon::parse($this->created_at)->diffForHumans();
     }
 }

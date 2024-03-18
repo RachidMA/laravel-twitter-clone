@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,7 @@ Route::get('/', function () {
 
 //ROUTE FOR USER
 Route::get('/feeds', [FeedController::class, 'index'])->name('feeds')->middleware(['auth']);
+Route::get('jobs/{job}/show', [JobController::class, 'show'])->name('jobs.show');
 Route::get('/profile/create', [ProfileController::class, 'create'])->name('user.profile.create')->middleware(['auth']);
 //TODO:ADD ROUTE TO STORE PROFILE FORM DATA
 Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store')->middleware(['auth']);
