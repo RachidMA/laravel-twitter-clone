@@ -32,6 +32,10 @@ Route::get('/profile/create', [ProfileController::class, 'create'])->name('user.
 Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store')->middleware(['auth']);
 Route::get('/users/{user}/profile', [ProfileController::class, 'index'])->name('users.profile.show')->middleware(['auth']);
 
+//ROUTE FOR STORING NEW JOB
+Route::get('/users/job/create', [JobController::class, 'create'])->name('users.job.create')->middleware(['auth', 'member']);
+Route::post('/users/job/store', [JobController::class, 'store'])->name('users.job.store')->middleware(['auth', 'member']);
+
 //COMMENTS ROUTES
 Route::post('/comments/{job}/comment/store', [CommentController::class, 'store'])->name('comments.store')->middleware(['auth', 'member']);
 Auth::routes();

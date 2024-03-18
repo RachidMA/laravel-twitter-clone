@@ -10,6 +10,7 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $with = ['profile', 'comments.profile'];
     /**
      * The attributes that are mass assignable.
      *
@@ -18,7 +19,7 @@ class Job extends Model
     protected $fillable = [
         'title',
         'description',
-        'profile_id',
+        'profiles_id',
         'image'
     ];
 
@@ -40,5 +41,10 @@ class Job extends Model
     public function createdAt()
     {
         return Carbon::parse($this->created_at)->diffForHumans();
+    }
+
+    public function imageUrl()
+    {
+        return url('storage/' . $this->image);
     }
 }

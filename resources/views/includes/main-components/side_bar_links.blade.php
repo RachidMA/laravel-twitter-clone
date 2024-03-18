@@ -9,7 +9,7 @@
     <div class="side-bar-user-data ">
         <ul class="border border-prinamry rounded shadow p-4 h-50">
             <li><a href="{{route('users.profile.show',['user'=>auth()->user()])}}" class="btn btn-dark text-white ">GO TO Profile</a></li>
-            <li><a href="" class="btn btn-success text-white">CREATE POST</a></li>
+            <li><a href="{{route('users.job.create', ['user'=>Auth::user()->profile->id])}}" class="btn btn-success text-white">CREATE POST</a></li>
             <li>
                 <div class="btn btn-primary btn-md m-0" aria-labelledby="navbarDropdown">
                     <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();

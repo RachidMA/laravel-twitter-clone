@@ -6,6 +6,6 @@
         </form>
     </div>
     <div class="footer m-2 text-dark">
-        @include('includes.components.footer')
+        @include('includes.footer-header-components.footer')
     </div>
 </div>

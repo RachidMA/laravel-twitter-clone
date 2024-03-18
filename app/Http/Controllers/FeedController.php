@@ -14,6 +14,7 @@ class FeedController extends Controller
     public function index(Request $request)
     {
 
+
         $jobs = Job::orderBy('created_at', 'desc')->paginate(2);
 
         //ONLY LOGED IN USERS CAN SEE FEEDS OF AVAILABLE JOBS

@@ -1,3 +1,5 @@
+@props(['job'])
+
 <div class="job-card col-md-8 w-100 pb-4">
     <div class="card card-bg w-100 p-2 ">
         <div class="profile-image border border-light rounded shadow d-flex mb-2">

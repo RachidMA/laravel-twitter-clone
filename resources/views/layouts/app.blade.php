@@ -20,7 +20,7 @@
 
 <body>
     <div id="app">
-        @include('includes.components.header')
+        @include('includes.footer-header-components.header')
 
         @if(session()->has('message') || session()->has('error'))
         <div class="session-message m-4" id="flashMessage">
