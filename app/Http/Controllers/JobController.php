@@ -11,6 +11,6 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
-        dd($job);
+        return view('job-show')->with(['job' => $job]);
     }
 }

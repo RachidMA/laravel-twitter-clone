@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
@@ -31,5 +32,6 @@ Route::get('/profile/create', [ProfileController::class, 'create'])->name('user.
 Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store')->middleware(['auth']);
 Route::get('/users/{user}/profile', [ProfileController::class, 'index'])->name('users.profile.show')->middleware(['auth']);
 
-
+//COMMENTS ROUTES
+Route::post('/comments/{job}/comment/store', [CommentController::class, 'store'])->name('comments.store')->middleware(['auth', 'member']);
 Auth::routes();

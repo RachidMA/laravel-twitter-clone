@@ -157,7 +157,7 @@ footer {
 .job-card div:last-child{
     margin-bottom: 1rem;
 }
-.job-card .profile-image img{
+.profile-image img{
     width: 4rem;
     height: 4rem;
     margin: .5rem ;
@@ -190,3 +190,8 @@ footer{
 }
 
 /*=============*/
+.comment-date{
+    position: absolute;
+    right: 1rem;
+    color: blue;
+}
