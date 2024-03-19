@@ -46,4 +46,10 @@ class Profile extends Model
     {
         return $this->belongsToMany(Job::class, 'job_user', 'job_id', 'profile_id')->withTimestamps();
     }
+
+    //CREATE IMAGE URL
+    public function imageUrl()
+    {
+        return url('storage/' . $this->profile_image);
+    }
 }

@@ -7,10 +7,6 @@
             <div class="nick-name mt-2">
                 <a href="#" class="link-info" title="See Profile">{{$job->profile->nickName}}</a><br>
             </div>
-            <div class="data">
-                <p>JOB PROFILE ID {{$job->profiles_id}}</p>
-                <p>USER PROFILE ID: {{Auth::user()->profile->id}}</p>
-            </div>
         </div>
         <div class="card-content border border-light rounded shadow p-4">
             <a href="{{route('jobs.show', ['job'=>$job->id])}}" class="card-title h4 link-info" title="Read More">{{$job->title}}</a><span>
