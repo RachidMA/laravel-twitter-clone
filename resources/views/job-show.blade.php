@@ -4,7 +4,8 @@
 
 @section('content')
 <!--SINGLE JOB CARD DETAILS-->
-@include('includes.main-components.job_card')
+<!-- @include('includes.main-components.job_card') -->
+<x:job-card :job="$job" />
 <!--POST COMMENT BLADE-->
 <x:comment-form-card :job="$job" />
 

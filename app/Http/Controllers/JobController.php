@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class JobController extends Controller
 {
@@ -19,7 +20,10 @@ class JobController extends Controller
     public function create()
     {
 
-        return  view('job-create-form');
+        $editing = false;
+        return  view('job-create-form')->with([
+            'editing' => $editing
+        ]);
     }
     public function store()
     {
@@ -39,8 +43,43 @@ class JobController extends Controller
 
         //CREATE A POST WITH THE DATA FROM THE VALIDATED DATA
         Job::create($validate);
-
-
         return  redirect()->route('feeds');
+    }
+
+    //GET JOB AND SEND IT FOR UPDATE
+    public function edit(Job $job)
+    {
+        $editing = true;
+        // CHECK IF USER IS AUTHORIZED TO EDIT THIS PROFILE
+        // $this->authorize("update", $job->profiles);
+        return view('job-create-form', ['job' => $job, 'editing' => $editing]);
+    }
+
+    //STORE UPDATED DATA
+    public function update(Job $job)
+    {
+        if (!(Auth::check() && Auth::user()->profile->id == $job->profiles_id)) {
+
+            dd('YOU ARE NOT ALLOWD');
+        }
+        // CHECK IF USER IS AUTHORIZED TO EDIT THIS PROfile
+        // $this->authorize("update", $job->profiles);
+        //VALIDATE INPUTS   
+        $data = request()->validate([
+            "title" => "required|string",
+            "description" => "required|string",
+            "image" => "image|nullable|max:1999"
+        ]);
+        //IF NEW IMG WAS ADDED
+        if ($img = request('image')) {
+            // DELETE OLD IMAGE BEFORE ADDING A NEW ONE
+            Storage::delete(['public/' . $job->image]);
+            $imagePath = $img->store("uploads", "public");
+            $data["image"] = $imagePath;
+        }
+        //UPDATE THE MODEL WITH THE REQUEST DATA
+        $job->update($data);
+        // REDIRECT BACK TO  THE FEED PAGE AFTER UPDATING
+        return redirect()->route('feeds')->with('message', 'JOB UPDATED SUCCEFULLY !');
     }
 }

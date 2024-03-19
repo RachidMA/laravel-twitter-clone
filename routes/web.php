@@ -27,6 +27,10 @@ Route::get('/', function () {
 //ROUTE FOR USER
 Route::get('/feeds', [FeedController::class, 'index'])->name('feeds')->middleware(['auth']);
 Route::get('jobs/{job}/show', [JobController::class, 'show'])->name('jobs.show');
+//TO SHOW FORM TO EDIT EXISTING JOB
+Route::get('jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit')->middleware(['auth', 'member']);
+//STORING UPDATED JOB DATA
+Route::post('jobs/{job}/update', [JobController::class, 'update'])->name('jobs.update')->middleware(['auth', 'member']);
 Route::get('/profile/create', [ProfileController::class, 'create'])->name('user.profile.create')->middleware(['auth']);
 //TODO:ADD ROUTE TO STORE PROFILE FORM DATA
 Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store')->middleware(['auth']);
