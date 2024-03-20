@@ -26,21 +26,24 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
+
+        $this->registerPolicies();
         //defining gate for updating a job
-        Gate::define('update-job', function ($job) {
-            return Auth::user()->profile->id == $job->profiles_id;
+        Gate::define('update-job', function ($user, $job) {
+            return $job->profiles_id == $user->profile->id;
         });
 
         //defining gate for updating a job
-        Gate::define('delete-job', function ($job) {
-            return Auth::user()->profile->id == $job->profiles_id;
+        Gate::define('delete-job', function ($user, $job) {
+            return $user->profile->id == $job->profiles_id;
         });
 
-        Gate::define('edit-profile', function ($profile) {
-            return $profile->id == Auth::user()->profile->id;
+        Gate::define('edit-profile', function ($user, $profile) {
+
+            return $profile->id == $user->profile->id;
         });
-        // Gate::define('delete-profile', function ($profile) {
-        //     return $profile->id == Auth::user()->profile->id;
+        // Gate::define('delete-profile', function ($user, $profile) {
+        //      return $profile->id == $user->profile->id;
         // });
     }
 }

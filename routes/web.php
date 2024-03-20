@@ -38,11 +38,9 @@ Route::middleware(['auth'])
 Route::middleware(['auth', 'member'])
     ->group(function () {
         Route::get('/users/{profile}/show', [ProfileController::class, 'index'])->name('users.profile.show');
-        Route::middleware(['can:edit-profile, profile'])->group(function () {
-            Route::get('profiles/{profile}/edit', [ProfileController::class, 'edit'])->name('profiles.profile.edit');
-            Route::post('profiles/{profile}/store', [ProfileController::class, 'update'])->name('profiles.profile.store');
-            //TODO:ROUTE TO DELETE PROFILE
-        });
+
+        Route::get('profiles/{profile}/edit', [ProfileController::class, 'edit'])->name('profiles.profile.edit')->middleware('can:edit-profile,profile');
+        Route::post('profiles/{profile}/store', [ProfileController::class, 'update'])->name('profiles.profile.store')->middleware('can:edit-profile,profile');
 
         //ROUTE FOR STORING NEW JOB
         Route::get('/users/job/create', [JobController::class, 'create'])->name('users.job.create');

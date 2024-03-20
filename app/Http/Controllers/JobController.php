@@ -50,12 +50,13 @@ class JobController extends Controller
     public function edit(Job $job)
     {
         //QUICK CHECK IF PROFILE IS ALLOWED TO EDIT
-        // if (!(Auth::check() || Auth::user()->profile->id !== $job->profiles_id)) {
-
+        // if (Auth::user()->profile->id !== $job->profiles_id) {
+        //     dd('YOU ARE NOT ALLOWED');
         //     abort(403, 'Unauthorized Action');
         // }
         //USING GATES
         $this->authorize('update-job', $job);
+
 
         $editing = true;
         // CHECK IF USER IS AUTHORIZED TO EDIT THIS PROFILE

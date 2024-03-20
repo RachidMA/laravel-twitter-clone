@@ -29,7 +29,7 @@ class Profile extends Model
 
     public function job()
     {
-        return $this->hasOne(Job::class);
+        return $this->hasOne(Job::class, 'profiles_id');
     }
 
     public function jobs()

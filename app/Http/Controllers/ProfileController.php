@@ -65,11 +65,12 @@ class ProfileController extends Controller
     {
 
         //GATE TO CHECK  IF THE CURRENT USER IS ACTUALLY OWNER OF THIS PROFILE
+
         $this->authorize('edit-profile', $profile);
         // if (!$profile->id == Auth::user()->profile->id) {
         //     dd('YOU ARE NOT ALLOWED');
         // }
-        dd('YOU ARE ALLOWED');
+
         $editing = true;
         return view('profile.form')->with([
             'profile' => $profile,

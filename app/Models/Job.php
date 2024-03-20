@@ -23,6 +23,7 @@ class Job extends Model
         'image'
     ];
 
+
     public function  profile()
     {
         return $this->belongsTo(Profile::class, 'profiles_id');
