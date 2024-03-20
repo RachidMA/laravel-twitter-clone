@@ -82,4 +82,23 @@ class JobController extends Controller
         // REDIRECT BACK TO  THE FEED PAGE AFTER UPDATING
         return redirect()->route('feeds')->with('message', 'JOB UPDATED SUCCEFULLY !');
     }
+
+    //DELETE SPECIFIC JOB
+    public function delete(Job $job)
+    {
+
+        //CHECK IF USER HAVE THE RIGHT TO DELETE THIS POST
+        if (!Auth::check() || $job->profiles_id !== Auth::user()->profile->id) {
+            dd('you are not');
+            abort(403, 'Unauthorized Action');
+        }
+        dd('you are allowed');
+        //with GATES
+        //$this->authorize("delete", $job);
+
+        //DELETING AN ELOQUENT MODEL
+        $job->delete();
+        //REDIRECTING BACK TO THE FEED PAGE AND SHOWING MESSAGE
+        return redirect('/feeds')->with('message', 'THE JOB HAS BEEN DELETED!');
+    }
 }

@@ -91,6 +91,6 @@ class ProfileController extends Controller
 
         //UPDATE  THE RECORD ON DB
         $profile->update($validate);
-        return redirect()->route('users.profile.show', [Auth::user()->profile])->with(['message' => 'PROFILE CREATED SUCCEFULLY']);
+        return redirect()->route('users.profile.show', [Auth::user()->profile])->with(['message' => 'PROFILE UPDATED SUCCEFULLY']);
     }
 }

@@ -34,7 +34,7 @@ class Profile extends Model
 
     public function jobs()
     {
-        return $this->hasMany(Job::class);
+        return $this->hasMany(Job::class, 'profiles_id');
     }
 
     public function saved_jobs()

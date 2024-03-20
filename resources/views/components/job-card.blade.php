@@ -26,7 +26,7 @@
         <div class="edit-delete-buttons  d-flex justify-content-around align-items-center p-2">
             <a href="{{route('jobs.edit', ['job'=>$job->id])}}" class="btn btn-outline-dark">Edit</a>
             <div class="delete pt-2 ">
-                <form action="#" method="POST">
+                <form action="{{route('jobs.job.delete', ['job'=>$job->id])}}" method="POST">
                     @csrf
                     @method("DELETE")
                     <button type="submit" class="btn btn-outline-danger">Delete</button>

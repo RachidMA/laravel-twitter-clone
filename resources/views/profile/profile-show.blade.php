@@ -36,6 +36,14 @@
         </div>
     </div>
 </div>
-
+<div class="user-profile-created-jobs mt-4">
+    <p>MOST RECENT JOBS THAT YOU HAVE POSTED</p>
+    @forelse($profile->jobs as $job)
+    <x:job-card :job='$job' />
+    @empty
+    <p>No jobs created yet.</p>
+    <li><a href="{{route('users.job.create', ['user'=>Auth::user()->profile->id])}}" class="btn btn-success text-white">CREATE POST</a></li>
+    @endforelse
+</div>
 
 @endsection
