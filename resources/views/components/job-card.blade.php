@@ -35,6 +35,21 @@
         </div>
         @endif
         @endif
+        <div class="user-data">
+            <p>USER LOGGEDIN: {{Auth::user()->profile->id}}</p>
+            <p>Profile ID: {{$job->profile->id}}</p>
+            <p>JOB PROFILE ID: {{$job->profiles_id}}</p>
+        </div>
+        <div class="edit-delete-buttons  d-flex justify-content-around align-items-center p-2">
+            <a href="{{route('jobs.edit', ['job'=>$job->id])}}" class="btn btn-outline-dark">Edit</a>
+            <div class="delete pt-2 ">
+                <form action="{{route('jobs.job.delete', ['job'=>$job->id])}}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        </div>
         <div class="card-likes-bar border border-light rounded shadow m-2 d-flex justify-content-between p-2">
             <p>LIKES</p>
             <p>comments</p>

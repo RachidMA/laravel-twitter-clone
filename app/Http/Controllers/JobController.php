@@ -49,6 +49,14 @@ class JobController extends Controller
     //GET JOB AND SEND IT FOR UPDATE
     public function edit(Job $job)
     {
+        //QUICK CHECK IF PROFILE IS ALLOWED TO EDIT
+        // if (!(Auth::check() || Auth::user()->profile->id !== $job->profiles_id)) {
+
+        //     abort(403, 'Unauthorized Action');
+        // }
+        //USING GATES
+        $this->authorize('update-job', $job);
+
         $editing = true;
         // CHECK IF USER IS AUTHORIZED TO EDIT THIS PROFILE
         // $this->authorize("update", $job->profiles);
@@ -58,10 +66,12 @@ class JobController extends Controller
     //STORE UPDATED DATA
     public function update(Job $job)
     {
-        if (!(Auth::check() && Auth::user()->profile->id == $job->profiles_id)) {
+        // if (!(Auth::check() || Auth::user()->profile->id !== $job->profiles_id)) {
 
-            dd('YOU ARE NOT ALLOWD');
-        }
+        //     abort(403, 'Unauthorized Action');
+        // }
+        $this->authorize('update-job', $job);
+        //VALIDATIONS
         // CHECK IF USER IS AUTHORIZED TO EDIT THIS PROfile
         // $this->authorize("update", $job->profiles);
         //VALIDATE INPUTS   
@@ -88,14 +98,12 @@ class JobController extends Controller
     {
 
         //CHECK IF USER HAVE THE RIGHT TO DELETE THIS POST
-        if (!Auth::check() || $job->profiles_id !== Auth::user()->profile->id) {
-            dd('you are not');
-            abort(403, 'Unauthorized Action');
-        }
-        dd('you are allowed');
+        // if (!Auth::check() || $job->profiles_id !== Auth::user()->profile->id) {
+        //     abort(403, 'Unauthorized Action');
+        // }
         //with GATES
-        //$this->authorize("delete", $job);
-
+        $this->authorize('job-delete', $job);
+        dd('YOU CAN DELETE');
         //DELETING AN ELOQUENT MODEL
         $job->delete();
         //REDIRECTING BACK TO THE FEED PAGE AND SHOWING MESSAGE

@@ -63,6 +63,13 @@ class ProfileController extends Controller
     //ROUTE TO SHOW EDIT PROFILE FORM
     public function edit(Profile $profile)
     {
+
+        //GATE TO CHECK  IF THE CURRENT USER IS ACTUALLY OWNER OF THIS PROFILE
+        // $this->authorize('edit-profile', $profile);
+        // if (Auth::user()->id !== $profile->user_id) {
+        //     dd('YOU ARE NOT ALLOWED');
+        // }
+        dd('YOU ARE ALLOWED');
         $editing = true;
         return view('profile.form')->with([
             'profile' => $profile,
@@ -72,7 +79,8 @@ class ProfileController extends Controller
 
     public function update(Profile $profile)
     {
-
+        //GATE TO CHECK  IF THE CURRENT USER IS ACTUALLY OWNER OF THIS PROFILE
+        $this->authorize('edit-profile', $profile);
 
         $validate = request()->validate([
             'nickName' => 'required|string|min:3|max:150',
@@ -93,4 +101,7 @@ class ProfileController extends Controller
         $profile->update($validate);
         return redirect()->route('users.profile.show', [Auth::user()->profile])->with(['message' => 'PROFILE UPDATED SUCCEFULLY']);
     }
+
+    //TODO: METHOD TO DELETE  PROFILES AND ALL THE POSTS CONNECTED WITH THEM
+
 }
