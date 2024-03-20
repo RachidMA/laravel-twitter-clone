@@ -65,8 +65,8 @@ class ProfileController extends Controller
     {
 
         //GATE TO CHECK  IF THE CURRENT USER IS ACTUALLY OWNER OF THIS PROFILE
-        // $this->authorize('edit-profile', $profile);
-        // if (Auth::user()->id !== $profile->user_id) {
+        $this->authorize('edit-profile', $profile);
+        // if (!$profile->id == Auth::user()->profile->id) {
         //     dd('YOU ARE NOT ALLOWED');
         // }
         dd('YOU ARE ALLOWED');
@@ -81,6 +81,11 @@ class ProfileController extends Controller
     {
         //GATE TO CHECK  IF THE CURRENT USER IS ACTUALLY OWNER OF THIS PROFILE
         $this->authorize('edit-profile', $profile);
+
+        //QUICK CHECK FOR AUTHORISATION
+        // if (!$profile->id == Auth::user()->profile->id) {
+        //     dd('YOU ARE NOT ALLOWED');
+        // }
 
         $validate = request()->validate([
             'nickName' => 'required|string|min:3|max:150',
