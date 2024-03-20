@@ -14,7 +14,7 @@
                 <div class="card-body">
 
                     <div class="text-center mb-4">
-                        <img src="{{$profile->imageUrl()}}" alt="Profile Image" class="profile-img">
+                        <img src="{{$profile->profile_image? $profile->imageUrl(): '/img/profile.png'}}" alt="Profile Image" class="profile-img">
                     </div>
                     <div class="form-group">
                         <label for="nickname" class="text-primary">Nickname</label>

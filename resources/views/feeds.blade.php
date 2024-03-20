@@ -5,7 +5,7 @@
 @section('content')
 
 @forelse($jobs as $job)
-<!-- @include('includes.main-components.job_card') -->
+
 <x:job-card :job='$job' />
 @empty
 <div class="container">

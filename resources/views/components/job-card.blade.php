@@ -3,7 +3,7 @@
 <div class="job-card col-md-8 w-100 pb-4">
     <div class="card card-bg w-100 p-2 ">
         <div class="profile-image border border-light rounded shadow d-flex mb-2">
-            <img src="/img/{{$job->profile->profile_image}}" alt="" class="">
+            <img src="{{$job->profile->image ? $job->profile->imageUrl() : '/img/profile.png'}}" alt="" class="">
             <div class="nick-name mt-2">
                 <a href="#" class="link-info" title="See Profile">{{$job->profile->nickName}}</a><br>
             </div>
@@ -17,7 +17,7 @@
                 {{$job->description}}
             </div>
             <div class="card-image w-100 text-center ">
-                <img src="{{$job->imageUrl()}}" alt="" class="w-50 h-50">
+                <img src="{{$job->image ? $job->imageUrl() : '/img/job.png'}}" alt="" class="w-50 h-50">
             </div>
         </div>
         <!-- SHOW  BUTTONS HERE ONLY IN THE SHOW SINGLE JOB PAGE AND ONLY FOR THE PERSON WHO CREATED -->

@@ -43,7 +43,7 @@ class JobController extends Controller
 
         //CREATE A POST WITH THE DATA FROM THE VALIDATED DATA
         Job::create($validate);
-        return  redirect()->route('feeds');
+        return  redirect()->route('feeds')->with('message', 'Your job has been posted!');
     }
 
     //GET JOB AND SEND IT FOR UPDATE
