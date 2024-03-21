@@ -8,12 +8,22 @@
     </div>
     <div class="side-bar-user-data ">
         <ul class="border border-prinamry rounded shadow p-4 h-50">
-            @if(Auth::check() && Auth::user()->profile)
+            <!-- FIRST METHOD OF AUTHORISATION USING IF STATEMENT -->
+            <!-- @if(Auth::check() && Auth::user()->profile)
             <li><a href="{{route('users.profile.show',['profile'=>Auth::user()->profile])}}" class="btn btn-dark text-white ">GO TO Profile</a></li>
             <li><a href="{{route('users.job.create', ['user'=>Auth::user()->profile->id])}}" class="btn btn-success text-white">CREATE POST</a></li>
             @else
             <li><a href="{{route('users.job.create')}}" class="btn btn-dark text-white ">Create Job</a></li>
-            @endif
+            @endif -->
+
+            <!-- SECOND METHOD OF AUTHORISATION USING POLICIES -->
+            @can('view', Auth::user()->profile)
+            <li><a href="{{route('users.profile.show',['profile'=>Auth::user()->profile])}}" class="btn btn-dark text-white ">GO TO Profile</a></li>
+            <li><a href="{{route('users.job.create', ['user'=>Auth::user()->profile->id])}}" class="btn btn-success text-white">CREATE POST</a></li>
+            @endcan
+            @cannot('view')
+            <li><a href="{{route('users.job.create')}}" class="btn btn-dark text-white ">Create Job</a></li>
+            @endcannot
             <li>
                 <div class="btn btn-primary btn-md m-0" aria-labelledby="navbarDropdown">
                     <a class="" href="{{ route('logout') }}" onclick="event.preventDefault();

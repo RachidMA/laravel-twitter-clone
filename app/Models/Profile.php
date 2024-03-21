@@ -22,6 +22,7 @@ class Profile extends Model
         'profile_image'
     ];
 
+
     public function user()
     {
         return $this->belongsTo(User::class);

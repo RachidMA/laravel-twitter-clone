@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +38,7 @@ Route::middleware(['auth'])
 //AUTH AND MEMBER MIDDLEWARES GROUP ROUTES
 Route::middleware(['auth', 'member'])
     ->group(function () {
-        Route::get('/users/{profile}/show', [ProfileController::class, 'index'])->name('users.profile.show');
+        Route::get('/users/{profile}/show', [ProfileController::class, 'index'])->name('users.profile.show')->middleware('can:view,profile');
 
         Route::get('profiles/{profile}/edit', [ProfileController::class, 'edit'])->name('profiles.profile.edit')->middleware('can:edit-profile,profile');
         Route::post('profiles/{profile}/store', [ProfileController::class, 'update'])->name('profiles.profile.store')->middleware('can:edit-profile,profile');

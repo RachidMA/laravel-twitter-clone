@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Ui\Presets\React;
 
 class ProfileController extends Controller
 {
 
+
     //RETURN  VIEW PROFILE 
     public function index(Profile $profile)
     {
-        $profile = Auth::user()->profile;
+
+        //ABORT IF YOU ARE NOT ALLOWED USING POLICIES
+        if (Gate::denies('view', $profile)) {
+            abort(403, "You can't view this profile");
+        }
 
         return  view('profile.profile-show')->with([
             'profile' => $profile
