@@ -16,9 +16,9 @@ class Member
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() && !Auth::user()->profile) {
-            return redirect()->route('user.profile.create')->with(['message' => 'You are not a member yet!']);
-        }
+        // if (Auth::user() && !Auth::user()->profile) {
+        //     return redirect()->route('user.profile.create')->with(['message' => 'You are not a member yet!']);
+        // }
         return $next($request);
     }
 }

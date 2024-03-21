@@ -44,6 +44,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function isAdmin(): bool
+    {
+        return $this->status == "admin";
+    }
+
     public function profile()
     {
         return $this->hasOne(Profile::class);
