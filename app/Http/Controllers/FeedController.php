@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\newUserMail;
+use App\Mail\newUserSubscribed;
 use App\Models\Job;
+use App\Models\User;
+use App\Notifications\newUserNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FeedController extends Controller
 {
@@ -13,7 +18,6 @@ class FeedController extends Controller
 
     public function index(Request $request)
     {
-
 
         $jobs = Job::orderBy('created_at', 'desc')->paginate(2);
 
@@ -25,6 +29,7 @@ class FeedController extends Controller
         return view('feeds')->with([
             'jobs' => $jobs
         ]);
+
 
         //IF THERE IS NO SEARCH QUERY, RETURN  ALL THE POSTS FROM THE DATABASE
 
