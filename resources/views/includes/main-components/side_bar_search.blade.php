@@ -1,14 +1,11 @@
 <div class="h-100 border border-primary rounded  ">
     <div class="search h-75  mb-2 ">
         <form action="{{route('feeds')}}" method="get" class="d-flex h-50 justify-content-center align-items-center flex-column m-2 border border-secondary rounded" method="get ">
-
-            <select name="cities" id="cities">
+            <input type="text" name="search" placeholder="Search..." class="m-2 w-90 border border-primary rounded px-2" value="{{request()->get('search')}}" />
+            <select name="cities" id="cities" class="w-75 border border-light shadow rounded my-4">
                 <option value="" selected>SELECT CITY</option>
-                <option value="casa">Casa</option>
-                <option value="Agadir">Agadir</option>
-                <option value="Rabat">Rabat</option>
             </select>
-            <input type="text" name="search" placeholder="Search..." class="m-2 w-90 border border-primary rounded" />
+
             <button type="submit" class="w-50 m-2 btn btn-primary">Search</button>
         </form>
     </div>

@@ -22,9 +22,8 @@ class FeedController extends Controller
         if (!auth()->check()) {
             return redirect()->route('login');
         }
-
+        //INICIALIZE THE QUERY
         $query = Post::query();
-
         // Apply search filters if provided
         if ($request->has('cities')) {
             $query->where('city', 'like', '%' . $request->input('cities') . '%');
