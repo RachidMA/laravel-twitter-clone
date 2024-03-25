@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class JobController extends Controller
+class PostController extends Controller
 {
 
-    //SHOW SINGLE JOB
-    public function show(Job $job)
+    //SHOW SINGLE Post
+    public function show(Post $job)
     {
         return view('job-show')->with(['job' => $job]);
     }
@@ -33,7 +33,7 @@ class JobController extends Controller
             'description' => 'required|min:20|max:10000',
             'image' => 'image|nullable'
         ]);
-        $validate['profiles_id'] = Auth::user()->profile->id;
+        $validate['profile_id'] = Auth::user()->profile->id;
 
         //CHECK IF REQUEST HAS IMAGE UPLOADED
         if (request('image')) {
@@ -41,13 +41,15 @@ class JobController extends Controller
             $validate['image'] = $imagePath;
         };
 
+
+
         //CREATE A POST WITH THE DATA FROM THE VALIDATED DATA
-        Job::create($validate);
-        return  redirect()->route('feeds')->with('message', 'Your job has been posted!');
+        Post::create($validate);
+        return  redirect()->route('feeds')->with('message', 'Your Post has been posted!');
     }
 
-    //GET JOB AND SEND IT FOR UPDATE
-    public function edit(Job $job)
+    //GET Post AND SEND IT FOR UPDATE
+    public function edit(Post $job)
     {
         //QUICK CHECK IF PROFILE IS ALLOWED TO EDIT
         // if (Auth::user()->profile->id !== $job->profiles_id) {
@@ -65,7 +67,7 @@ class JobController extends Controller
     }
 
     //STORE UPDATED DATA
-    public function update(Job $job)
+    public function update(Post $job)
     {
         // if (!(Auth::check() || Auth::user()->profile->id !== $job->profiles_id)) {
 
@@ -95,7 +97,7 @@ class JobController extends Controller
     }
 
     //DELETE SPECIFIC JOB
-    public function delete(Job $job)
+    public function delete(Post $job)
     {
 
         //CHECK IF USER HAVE THE RIGHT TO DELETE THIS POST

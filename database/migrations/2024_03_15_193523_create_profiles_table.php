@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('nickName')->unique();
             $table->string('phoneNumber')->unique(); // null means that unique constraint will be ignored if phoneNumber is empty
             $table->text('bio')->nullable();

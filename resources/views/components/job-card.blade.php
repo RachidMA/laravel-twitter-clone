@@ -22,7 +22,8 @@
         </div>
         <!-- SHOW  BUTTONS HERE ONLY IN THE SHOW SINGLE JOB PAGE AND ONLY FOR THE PERSON WHO CREATED -->
         @if((request()->path() === 'jobs/'.$job->id.'/show'))
-        @if(Auth::check())
+        <!-- CHECK IF USER IS LOGGED IN AND HAS PROFILE -->
+        @if(Auth::check() && Auth()->user()->profile)
         @can('update-job', $job)
         <div class="edit-delete-buttons  d-flex justify-content-around align-items-center p-2">
             <a href="{{route('jobs.edit', ['job'=>$job->id])}}" class="btn btn-outline-dark">Edit</a>

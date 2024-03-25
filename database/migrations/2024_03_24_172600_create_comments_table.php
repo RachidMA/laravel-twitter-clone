@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_user', function (Blueprint $table) {
-            $table->foreignId('profiles')->constrained()->cascadeOnDelete();
-            $table->foreignId('jobs')->constrained()->cascadeOnDelete();
+        Schema::create('comments', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('text')->nullable();
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('profile_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_user');
+        Schema::dropIfExists('comments');
     }
 };

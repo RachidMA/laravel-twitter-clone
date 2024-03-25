@@ -28,24 +28,24 @@ class Profile extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function job()
+    public function post()
     {
-        return $this->hasOne(Job::class, 'profiles_id');
+        return $this->hasOne(Post::class, 'profile_id');
     }
 
-    public function jobs()
+    public function posts()
     {
-        return $this->hasMany(Job::class, 'profiles_id');
+        return $this->hasMany(Post::class, 'profile_id');
     }
 
-    public function saved_jobs()
+    public function saved_posts()
     {
-        return $this->belongsToMany(Job::class, 'job_user', 'job_id', 'profile_id')->withTimestamps();
+        return $this->belongsToMany(Post::class, 'post_user', 'post_id', 'profile_id')->withTimestamps();
     }
 
-    public function approved_jobs()
+    public function approved_posts()
     {
-        return $this->belongsToMany(Job::class, 'job_user', 'job_id', 'profile_id')->withTimestamps();
+        return $this->belongsToMany(Post::class, 'post_user', 'post_id', 'profile_id')->withTimestamps();
     }
 
     //CREATE IMAGE URL

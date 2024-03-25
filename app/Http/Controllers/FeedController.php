@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\newUserMail;
-use App\Mail\newUserSubscribed;
-use App\Models\Job;
+
+use App\Models\Post;
 use App\Models\User;
 use App\Notifications\newUserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class FeedController extends Controller
 {
@@ -18,23 +18,35 @@ class FeedController extends Controller
 
     public function index(Request $request)
     {
-
-        $jobs = Job::orderBy('created_at', 'desc')->paginate(2);
-
-        //ONLY LOGED IN USERS CAN SEE FEEDS OF AVAILABLE JOBS
+        // Redirect unauthenticated users to login page
         if (!auth()->check()) {
             return redirect()->route('login');
         }
 
-        return view('feeds')->with([
-            'jobs' => $jobs
-        ]);
+        $query = Post::query();
 
+        // Apply search filters if provided
+        if ($request->has('cities')) {
+            $query->where('city', 'like', '%' . $request->input('cities') . '%');
+        }
+        if ($request->has('search')) {
+            $search = '%' . $request->input('search') . '%';
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', $search)
+                    ->orWhere('description', 'like', $search);
+            });
+        }
 
-        //IF THERE IS NO SEARCH QUERY, RETURN  ALL THE POSTS FROM THE DATABASE
+        // Order the query by created_at in descending order
+        $query->orderBy('created_at', 'desc');
 
-        //CHECK IF THERE  IS A SEARCH QUERY AND SEND IT TO THE SERVICE FOR PROCESSING
-        //RETURN VIEW
+        // Paginate the results
+        $jobs = $query->paginate(1);
 
+        return view('feeds', compact('jobs'));
     }
 }
+
+// $jobs = $jobs
+//     ->orderBy('created_at', 'desc')
+//     ->paginate(1);

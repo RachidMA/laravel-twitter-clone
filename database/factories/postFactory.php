@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Job>
  */
-class JobFactory extends Factory
+class postFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,8 @@ class JobFactory extends Factory
         return [
             'title' => fake()->text(50),
             'description' => fake()->text(600),
-            'profiles_id' => '?',
+            'city' => fake()->city(),
+            'profile_id' => '?',
             'image' => fake()->image()
         ];
     }

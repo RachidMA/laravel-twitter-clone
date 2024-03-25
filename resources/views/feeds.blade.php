@@ -12,10 +12,11 @@
     <h1>No Job Postings Yet</h1>
 </div>
 @endforelse
-{{$jobs->links()}}
+
 <!-- 
-    
+    pagination
  -->
+{{$jobs->withQueryString()->links()}}
 
 
 @endsection

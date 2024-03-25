@@ -38,7 +38,7 @@
 </div>
 <div class="user-profile-created-jobs mt-4">
     <p>MOST RECENT JOBS THAT YOU HAVE POSTED</p>
-    @forelse($profile->jobs as $job)
+    @forelse($profile->posts as $job)
     <x:job-card :job='$job' />
     @empty
     <p>No jobs created yet.</p>

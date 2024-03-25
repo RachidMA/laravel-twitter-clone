@@ -3,7 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FeedController;
-use App\Http\Controllers\JobController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Notifications\newUserNotification;
 use GuzzleHttp\Middleware;
@@ -23,10 +24,7 @@ use Illuminate\Support\Facades\Log;
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 //AUTH MIDDLEWARE GROUP ROUTES
 Route::middleware(['auth'])
@@ -34,7 +32,7 @@ Route::middleware(['auth'])
         //ROUTE FOR USER
         Route::get('/feeds', [FeedController::class, 'index'])->name('feeds');
 
-        Route::get('jobs/{job}/show', [JobController::class, 'show'])->name('jobs.show');
+        Route::get('jobs/{job}/show', [PostController::class, 'show'])->name('jobs.show');
         //TO SHOW FORM TO EDIT EXISTING JOB
         Route::get('/profile/create', [ProfileController::class, 'create'])->name('user.profile.create');
         Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
@@ -48,13 +46,13 @@ Route::middleware(['auth', 'member'])
         Route::post('profiles/{profile}/store', [ProfileController::class, 'update'])->name('profiles.profile.store')->middleware('can:edit-profile,profile');
 
         //ROUTE FOR STORING NEW JOB
-        Route::get('/users/job/create', [JobController::class, 'create'])->name('users.job.create');
-        Route::post('/users/job/store', [JobController::class, 'store'])->name('users.job.store');
-        Route::get('jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit')->middleware('can:update-job,job');
+        Route::get('/users/job/create', [PostController::class, 'create'])->name('users.job.create');
+        Route::post('/users/job/store', [PostController::class, 'store'])->name('users.job.store');
+        Route::get('jobs/{job}/edit', [PostController::class, 'edit'])->name('jobs.edit')->middleware('can:update-job,job');
         //STORING UPDATED JOB DATA
-        Route::post('jobs/{job}/update', [JobController::class, 'update'])->name('jobs.update')->middleware('can:update-job,job');
+        Route::post('jobs/{job}/update', [PostController::class, 'update'])->name('jobs.update')->middleware('can:update-job,job');
         //TODO:ROUTE TO DELETE  A JOB
-        Route::delete('jobs/{job}/delete', [JobController::class, 'delete'])->name('jobs.job.delete')->middleware('can:job-delete,job');
+        Route::delete('jobs/{job}/delete', [PostController::class, 'delete'])->name('jobs.job.delete')->middleware('can:job-delete,job');
         //COMMENTS ROUTES
         Route::post('/comments/{job}/comment/store', [CommentController::class, 'store'])->name('comments.store');
     });

@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class JobSeeder extends Seeder
+class postSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,8 +17,8 @@ class JobSeeder extends Seeder
 
         for ($i = 0; $i <= count($profileIds) - 1; ++$i) {
 
-            \App\Models\Job::factory()->create([
-                'profiles_id' =>  $profileIds[$i],
+            \App\Models\Post::factory()->create([
+                'profile_id' =>  $profileIds[$i],
             ]);
             //SET USER AS MEMBER WHEN HE CREATES PROFILE
             $user = \App\Models\Profile::find($profileIds[$i] ?? null)->user;

@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
 
         //defining gate for updating a job
         Gate::define('update-job', function ($user, $job) {
-            return $job->profiles_id == $user->profile->id;
+            return $job->profile_id == $user->profile->id;
         });
 
         //defining gate for updating a job

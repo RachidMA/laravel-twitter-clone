@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->foreignId('profiles_id')->constrained('profiles', 'id')->cascadeOnDelete();
-            $table->string('image')->nullable();
+        Schema::create('post_user', function (Blueprint $table) {
+            $table->foreignId('profiles')->constrained()->cascadeOnDelete();
+            $table->foreignId('posts')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('post_user');
     }
 };

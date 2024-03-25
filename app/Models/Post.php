@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Job extends Model
+class Post extends Model
 {
     use HasFactory;
 
@@ -19,14 +19,15 @@ class Job extends Model
     protected $fillable = [
         'title',
         'description',
-        'profiles_id',
+        'city',
+        'profile_id',
         'image'
     ];
 
 
     public function  profile()
     {
-        return $this->belongsTo(Profile::class, 'profiles_id');
+        return $this->belongsTo(Profile::class, 'profile_id');
     }
 
     public function comments()

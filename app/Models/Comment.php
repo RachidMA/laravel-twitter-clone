@@ -17,9 +17,9 @@ class Comment extends Model
     ];
 
 
-    public function job()
+    public function post()
     {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Post::class);
     }
 
     public function profile()

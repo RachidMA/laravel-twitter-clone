@@ -2,12 +2,14 @@
 
 namespace App\Notifications;
 
+use Ramsey\Uuid\Uuid;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class newUserNotification extends Notification
+
+class newUserNotification extends Notification  implements ShouldQueue
 {
     use Queueable;
 
@@ -35,11 +37,11 @@ class newUserNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
 
-
         return (new MailMessage)
             ->subject('WE NOTIFY YOU FOR NEW USER FOR THE APP')
             ->markdown('notifications.newUser', ['user' => $notifiable]);
     }
+
 
     /**
      * Get the array representation of the notification.
