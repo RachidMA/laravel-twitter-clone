@@ -4,6 +4,7 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 
+use App\Models\Post;
 use App\Models\Profile;
 use App\Models\User;
 use App\Policies\ProfilePolicy;
@@ -31,12 +32,12 @@ class AuthServiceProvider extends ServiceProvider
 
 
         //defining gate for updating a job
-        Gate::define('update-job', function ($user, $job) {
+        Gate::define('update-job', function (User $user, Post $job) {
             return $job->profile_id == $user->profile->id;
         });
 
         //defining gate for updating a job
-        Gate::define('delete-job', function ($user, $job) {
+        Gate::define('delete-job', function ($user, Post $job) {
             return $user->profile->id == $job->profiles_id;
         });
 

@@ -20,12 +20,13 @@ class ProfileController extends Controller
     //RETURN  VIEW PROFILE 
     public function index(Profile $profile)
     {
-
-
         //ABORT IF YOU ARE NOT ALLOWED USING POLICIES
-        if (Gate::denies('view', $profile)) {
-            abort(403, "You can't view this profile");
-        }
+        // if (Gate::denies('view', $profile)) {
+        //     abort(403, "You can't view this profile");
+        // }
+
+        //CHECK IF USER CAN SEE OWN PROFILE USING POLICY
+        $this->authorize('view', $profile);
 
 
         return  view('profile.profile-show')->with([
@@ -76,7 +77,7 @@ class ProfileController extends Controller
 
         //GATE TO CHECK  IF THE CURRENT USER IS ACTUALLY OWNER OF THIS PROFILE
 
-        // $this->authorize('edit-profile', $profile);
+        $this->authorize('edit', $profile);
         // if (!$profile->id == Auth::user()->profile->id) {
         //     dd('YOU ARE NOT ALLOWED');
         // }
@@ -91,8 +92,7 @@ class ProfileController extends Controller
     public function update(Profile $profile)
     {
         //GATE TO CHECK  IF THE CURRENT USER IS ACTUALLY OWNER OF THIS PROFILE
-        $this->authorize('edit-profile', $profile);
-
+        $this->authorize('update', $profile);
         //QUICK CHECK FOR AUTHORISATION
         // if (!$profile->id == Auth::user()->profile->id) {
         //     dd('YOU ARE NOT ALLOWED');

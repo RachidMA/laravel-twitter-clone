@@ -18,7 +18,7 @@ class ProfilePolicy
     }
 
     //ADMIN ISTRATOR POLICIES WHICH WILL OVERWRITE  THE DEFAULT ONES IF NEEDED
-    public function before($user, $ability)
+    public function before($user)
     {
         if ($user->isAdmin()) {
             return true;
@@ -27,8 +27,6 @@ class ProfilePolicy
 
     public function   view(User $user, Profile $profile)
     {
-
-
         return ($user->profile && $user->profile->id == $profile->id);
     }
 
@@ -36,11 +34,11 @@ class ProfilePolicy
     {
         /* @var User $user */
         /* @var User $profile */
-        return $user->id === $profile->id || $user->isAdmin();
+        return $user->id === $profile->user_id || $user->isAdmin();
     }
 
-    public function update(Profile $profile, User $user)
+    public function update(User $user, Profile $profile)
     {
-        return ($profile->user_id ===  $user->id) || $user->isAdmin();
+        return $this->edit($user, $profile);
     }
 }
