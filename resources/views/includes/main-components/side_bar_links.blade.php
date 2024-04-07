@@ -20,7 +20,9 @@
             @can('view', Auth::user()->profile)
             <li><a href="{{route('users.profile.show',['profile'=>Auth::user()->profile])}}" class="btn btn-dark text-white ">GO TO Profile</a></li>
             <li><a href="{{route('users.job.create', ['user'=>Auth::user()->profile->id])}}" class="btn btn-success text-white">CREATE POST</a></li>
+
             @endcan
+
             @cannot('view')
             <li><a href="{{route('users.job.create')}}" class="btn btn-dark text-white ">Create Job</a></li>
             @endcannot

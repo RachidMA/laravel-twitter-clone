@@ -76,7 +76,7 @@ class ProfileController extends Controller
 
         //GATE TO CHECK  IF THE CURRENT USER IS ACTUALLY OWNER OF THIS PROFILE
 
-        $this->authorize('edit-profile', $profile);
+        // $this->authorize('edit-profile', $profile);
         // if (!$profile->id == Auth::user()->profile->id) {
         //     dd('YOU ARE NOT ALLOWED');
         // }

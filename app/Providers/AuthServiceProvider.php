@@ -5,6 +5,7 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Models\Profile;
+use App\Models\User;
 use App\Policies\ProfilePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->profile->id == $job->profiles_id;
         });
 
-        Gate::define('edit-profile', function ($user, $profile) {
+        Gate::define('edit-profile', function (User $user, Profile $profile) {
 
             return $profile->id == $user->profile->id;
         });

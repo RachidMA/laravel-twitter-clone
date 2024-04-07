@@ -38,7 +38,7 @@ main{
 .card-container a{
     text-decoration: none;
 }
-.card-feeds{
+.card-feeds, .card-profile{
     background-image: linear-gradient(to right, rgba(10, 10, 85, 0.925) 30%, rgba(0, 0, 255, 0.76));
 }
 .card-container .card:hover{

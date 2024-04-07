@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\FuncCall;
@@ -24,9 +25,22 @@ class ProfilePolicy
         }
     }
 
-    public function view($user, $profile)
+    public function   view(User $user, Profile $profile)
     {
 
+
         return ($user->profile && $user->profile->id == $profile->id);
+    }
+
+    public function edit(User $user, Profile $profile)
+    {
+        /* @var User $user */
+        /* @var User $profile */
+        return $user->id === $profile->id || $user->isAdmin();
+    }
+
+    public function update(Profile $profile, User $user)
+    {
+        return ($profile->user_id ===  $user->id) || $user->isAdmin();
     }
 }

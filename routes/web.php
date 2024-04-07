@@ -42,7 +42,7 @@ Route::middleware(['auth', 'member'])
     ->group(function () {
         Route::get('/users/{profile}/show', [ProfileController::class, 'index'])->name('users.profile.show')->middleware('can:view,profile');
 
-        Route::get('profiles/{profile}/edit', [ProfileController::class, 'edit'])->name('profiles.profile.edit')->middleware('can:edit-profile,profile');
+        Route::get('profiles/{profile}/edit', [ProfileController::class, 'edit'])->name('profiles.profile.edit')->middleware('can:edit-profile, profile');
         Route::post('profiles/{profile}/store', [ProfileController::class, 'update'])->name('profiles.profile.store')->middleware('can:edit-profile,profile');
 
         //ROUTE FOR STORING NEW JOB
