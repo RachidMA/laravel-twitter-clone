@@ -18,6 +18,7 @@ class FeedController extends Controller
 
     public function index(Request $request)
     {
+
         // Redirect unauthenticated users to login page
         if (!auth()->check()) {
             return redirect()->route('login');

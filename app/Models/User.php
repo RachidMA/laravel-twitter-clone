@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->status == "admin";
+        return $this->status == 'admin';
     }
 
     public function profile()

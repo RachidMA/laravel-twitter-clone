@@ -54,7 +54,7 @@
             @if (!request()->is('/', 'login', 'register'))
             <div class="search-bar">
                 <section class="search">
-                    @include('includes.main-components.side_bar_search')
+                    <x:search-bar-card :formRoute="route('feeds')" />
                 </section>
             </div>
             @endif

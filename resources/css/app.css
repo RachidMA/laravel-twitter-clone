@@ -30,7 +30,17 @@ main{
     position: sticky;
     top: 0;
 }
-
+.result-to-admin{
+    background-color: #5555551e;
+}
+.result-to-admin .checkbox-input{
+    display: inline;
+    margin: .5rem;
+}
+.result-to-admin span{
+    color: #26418bfb;
+   padding-right: 1rem;
+}
 .card-container .card{
     transition: all .5s;
 
@@ -203,3 +213,5 @@ footer{
     border-radius: 50%;
     object-fit: cover;
 }
+
+

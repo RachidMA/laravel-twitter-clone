@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Models\Post;
 use App\Models\Profile;
 use App\Models\User;
+use App\Policies\AdminPolicy;
 use App\Policies\ProfilePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Profile::class => ProfilePolicy::class,
+        User::class => AdminPolicy::class
     ];
 
     /**
