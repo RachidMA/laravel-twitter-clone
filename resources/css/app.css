@@ -1,4 +1,8 @@
-
+body{
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif
+}
 main{
     display: flex;
     position: relative;
@@ -215,4 +219,29 @@ footer{
 }
 .dashboard-link{
     text-decoration: none;
+}
+.statistics{
+    background-color: #eee;
+    display: flex;
+    padding-top: 5rem;
+    box-shadow: 10px 10px 20px 1px gray;
+}
+.statistics-container{
+    background-color: #77777760;
+    margin: 1rem;
+    display: inline-block;
+    height: 10rem;
+    width: 15rem;
+    text-align: center;
+    padding-top: 2rem;
+    box-shadow: 10px 10px 20px 5px rgba(53, 48, 48, 0.329);
+    border-radius: 1rem;
+    color: rgba(0, 0, 255, 0.664);
+}
+.statistics-container h3{
+    margin-bottom: 1.5rem;
+}
+.statistics-container p{
+    font-size: 1.5rem;
+    font-weight: bold;
 }

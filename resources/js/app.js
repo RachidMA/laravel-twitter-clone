@@ -54,3 +54,20 @@ getCities()
     .catch((error) => {
         console.error("Error:", error);
     });
+
+//ANIMATING STATISTICS NUMBERS FROM ADMIN PAGE
+$(document).ready(function () {
+    $(".animate-number").each(function () {
+        var $this = $(this);
+        jQuery({ Counter: 0 }).animate(
+            { Counter: $this.text() },
+            {
+                duration: 1000, // Adjust duration as needed
+                easing: "swing", // Adjust easing as needed
+                step: function () {
+                    $this.text(Math.ceil(this.Counter));
+                },
+            }
+        );
+    });
+});
