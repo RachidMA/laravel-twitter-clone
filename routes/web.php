@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FeedController;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use PHPUnit\Framework\Attributes\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +59,11 @@ Route::middleware(['auth', 'member'])
         Route::post('/comments/{job}/comment/store', [CommentController::class, 'store'])->name('comments.store');
     });
 
+
+//ADMIN ROUTES
+Route::middleware(['auth'])->prefix('admin')
+    ->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    });
 
 Auth::routes();

@@ -32,7 +32,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-
+        Gate::define('admin', function (User $admin) {
+            dd($admin);
+            return $admin->isAdmin();
+        });
         //defining gate for updating a job
         Gate::define('update-job', function (User $user, Post $job) {
             return $job->profile_id == $user->profile->id;

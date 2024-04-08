@@ -1,1 +1,10 @@
-<h1>THIS IS ADMIN DASHBOARD</h1>
+@extends('layouts.app')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
+<h3>ADMIN Dashboard</h3>
+
+
+@endsection
