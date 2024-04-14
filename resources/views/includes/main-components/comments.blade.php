@@ -5,6 +5,6 @@
             <a href="#" class="link-info" title="See Profile">{{$job->profile->nickName}}</a><br>
         </div>
     </div>
-    <p>{{$comment->comment}} <span class="comment-date">{{$comment->createdAt()}}</span></p>
+    <p>{{$comment->text}} <span class="comment-date">{{$comment->createdAt()}}</span></p>
 
 </div>

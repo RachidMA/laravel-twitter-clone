@@ -3,6 +3,7 @@
 @section('title', 'JOB CREATE FORM')
 
 @section('content')
+
 <div class="job-create-form bg-light border border-light rounded shadow text-center p-4">
     <p>Enter the job details below:</p>
     <form action="{{$editing ? route('jobs.update', ['job'=>$job->id]) :route('users.job.store')}}" enctype="multipart/form-data" method="post">
@@ -18,6 +19,26 @@
         @error('description')
         <div class="error-message text-danger">{{$message}}</div>
         @enderror
+
+        <div class="collections categories-collection">
+            <label for="Categories">Category: </label><br>
+            <select name="categories" id="categories" class="w-50 border border-light shadow rounded my-4">
+                <option value="" selected>SELECT CATEGORY</option>
+            </select>
+            @error('categories')
+            <div class="error-message text-danger">{{$message}}</div>
+            @enderror
+        </div>
+
+        <div class="collections cities-collection">
+            <label for="Categories">City: </label><br>
+            <select name="cities" id="cities" class="w-50 border border-light shadow rounded my-4">
+                <option value="" selected>SELECT CITY</option>
+            </select>
+            @error('cities')
+            <div class="error-message text-danger">{{$message}}</div>
+            @enderror
+        </div>
 
         <!-- upload image -->
         <label for="image">{{$editing ? 'Upload New Image Or Keep the Old' : 'Upload Image'}} </label><br>

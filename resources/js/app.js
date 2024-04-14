@@ -56,16 +56,18 @@ getCities()
     });
 
 //ANIMATING STATISTICS NUMBERS FROM ADMIN PAGE
-$(document).ready(function () {
+$(function () {
     $(".animate-number").each(function () {
-        var $this = $(this);
+        //GET OBJECT OF EACH ELEMENT
+        let thisObject = $(this);
         jQuery({ Counter: 0 }).animate(
-            { Counter: $this.text() },
+            { Counter: thisObject.text() },
             {
-                duration: 1000, // Adjust duration as needed
-                easing: "swing", // Adjust easing as needed
+                duration: 1000,
+                easing: "swing",
                 step: function () {
-                    $this.text(Math.ceil(this.Counter));
+                    //THE "this" BELLOW REFERS TO JQUERY OBJECT
+                    thisObject.text(Math.ceil(this.Counter));
                 },
             }
         );

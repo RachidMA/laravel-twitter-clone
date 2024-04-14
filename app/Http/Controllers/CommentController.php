@@ -15,21 +15,22 @@ class CommentController extends Controller
     {
 
         $validate = request()->validate([
-            'comment' => 'required|min:3|max:255',
+            'text' => 'required|min:3|max:255',
         ]);
-        $validate['job_id'] = $job->id;
+        $validate['post_id'] = $job->id;
         $validate['profile_id'] = Auth::user()->profile->id;
 
         //FIRST METHOD TO STORE DATA
         // $comment = new Comment();
-        // $comment->comment = $validate['comment'];
-        // $comment->job_id = $job->id;
+        // $comment->text = $validate['text'];
+        // $comment->post_id = $job->id;
         // $comment->profile_id = Auth::user()->profile->id;
         // $comment->save();
 
         //SECOND METHOD TO STORE DATA
         //MAKE SURE ALL FILLABLES HAS SAME NAME AS INPUTS
-        Comment::create($validate);
+        $saving = Comment::create($validate);
+
         return redirect()->back();
     }
 }

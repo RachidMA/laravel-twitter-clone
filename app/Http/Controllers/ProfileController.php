@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,7 +24,7 @@ class ProfileController extends Controller
 
         //CHECK IF USER CAN SEE OWN PROFILE USING POLICY
         $this->authorize('view', $profile);
-
+        // $profile = Profile::with(['user', 'posts'])->findOrFail(Auth::user()->id);
         return  view('profile.profile-show')->with([
             'profile' => $profile
         ]);

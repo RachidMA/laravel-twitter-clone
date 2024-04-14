@@ -43,6 +43,11 @@ class FeedController extends Controller
         // Paginate the results
         $jobs = $query->paginate(1);
 
+        // $jobs = [];
+
+        // $jobs = Post::all();
+
+        // dd($jobs);
         return view('feeds', compact('jobs'));
     }
 }

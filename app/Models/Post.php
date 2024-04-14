@@ -6,11 +6,16 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Post extends Model
 {
     use HasFactory;
+    protected $with = [
+        'profile',
+        'comments.profile'
+    ];
 
-    protected $with = ['profile', 'comments.profile'];
+    // protected $with = ['profile', 'comments.profile'];
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +26,7 @@ class Post extends Model
         'description',
         'city',
         'profile_id',
+        'category_id',
         'image'
     ];
 
@@ -32,7 +38,7 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->latest();
     }
 
     public function comment()
@@ -48,5 +54,10 @@ class Post extends Model
     public function imageUrl()
     {
         return url('storage/' . $this->image);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

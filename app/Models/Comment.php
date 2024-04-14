@@ -9,10 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+    // protected $with = [
+    //     'profile',
+    //     'post'
+    // ];
 
     protected $fillable = [
-        'comment',
-        'job_id',
+        'text',
+        'post_id',
         'profile_id'
     ];
 

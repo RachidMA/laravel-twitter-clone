@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
 
     //SHOW SINGLE Post
-    public function show(Post $job)
+    public function show(Request $request, Post $job)
     {
+        // $post = Post::findOrFail($request->job);
+
+
         return view('job-show')->with(['job' => $job]);
     }
 
@@ -21,8 +26,15 @@ class PostController extends Controller
     {
 
         $editing = false;
+
+        //CACHED CATEGORIES RESULT
+        $categories = Cache::remember('categories', 1440, function () {
+            return  Category::all();
+        });
+
         return  view('job-create-form')->with([
-            'editing' => $editing
+            'editing' => $editing,
+            'categories' => $categories
         ]);
     }
     public function store()
@@ -31,7 +43,8 @@ class PostController extends Controller
         $validate = request()->validate([
             'title' => 'required|min:6|max:255',
             'description' => 'required|min:20|max:10000',
-            'image' => 'image|nullable'
+            'image' => 'image|nullable',
+            'category_id' => 'required|exists:App\Models\Category,id',
         ]);
         $validate['profile_id'] = Auth::user()->profile->id;
 
