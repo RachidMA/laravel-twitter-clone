@@ -10,10 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $with = [
-        'profile',
-        'comments.profile'
-    ];
+
 
     // protected $with = ['profile', 'comments.profile'];
     /**

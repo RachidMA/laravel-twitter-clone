@@ -15,8 +15,6 @@ class PostController extends Controller
     //SHOW SINGLE Post
     public function show(Request $request, Post $job)
     {
-        // $post = Post::findOrFail($request->job);
-
 
         return view('job-show')->with(['job' => $job]);
     }

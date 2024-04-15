@@ -29,7 +29,7 @@ class CommentController extends Controller
 
         //SECOND METHOD TO STORE DATA
         //MAKE SURE ALL FILLABLES HAS SAME NAME AS INPUTS
-        $saving = Comment::create($validate);
+        Comment::create($validate);
 
         return redirect()->back();
     }

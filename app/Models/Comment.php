@@ -9,10 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    // protected $with = [
-    //     'profile',
-    //     'post'
-    // ];
+    protected $with = [
+        'profile',
+    ];
 
     protected $fillable = [
         'text',
