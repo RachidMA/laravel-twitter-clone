@@ -35,8 +35,10 @@ class PostController extends Controller
             'categories' => $categories
         ]);
     }
-    public function store()
+    public function store(Request $request)
     {
+        dd($request);
+
 
         $validate = request()->validate([
             'title' => 'required|min:6|max:255',

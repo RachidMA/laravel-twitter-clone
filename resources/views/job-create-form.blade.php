@@ -22,8 +22,12 @@
 
         <div class="collections categories-collection">
             <label for="Categories">Category: </label><br>
-            <select name="categories" id="categories" class="w-50 border border-light shadow rounded my-4">
+            <select name="category_id" id="categories" class="w-50 border border-light shadow rounded my-4">
+
                 <option value="" selected>SELECT CATEGORY</option>
+                @foreach ($categories as $category)
+                <option value={{$category->id}}> {{$category->name}} </option>
+                @endforeach
             </select>
             @error('categories')
             <div class="error-message text-danger">{{$message}}</div>

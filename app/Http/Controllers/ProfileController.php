@@ -21,7 +21,7 @@ class ProfileController extends Controller
         // if (Gate::denies('view', $profile)) {
         //     abort(403, "You can't view this profile");
         // }
-
+        dd($profile->totalPosts());
         //CHECK IF USER CAN SEE OWN PROFILE USING POLICY
         $this->authorize('view', $profile);
         // $profile = Profile::with(['user', 'posts'])->findOrFail(Auth::user()->id);

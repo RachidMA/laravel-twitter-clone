@@ -54,4 +54,10 @@ class Profile extends Model
     {
         return url('storage/' . $this->profile_image);
     }
+
+    //COUNT HOW MANY POST THE PROFILE HAS CREATED
+    public function totalPosts()
+    {
+        return $this->posts()->count();
+    }
 }
