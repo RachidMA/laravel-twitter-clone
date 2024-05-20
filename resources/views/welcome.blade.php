@@ -18,7 +18,7 @@
                 @endif
                 @endauth
                 @guest
-                <a href="{{route('login')}}" class="directing-user h4 display-5 text-white">LOGIN || SIGNUP</a>
+                <a href="{{route('login')}}" class="directing-user h4 display-5 text-white">LOGIN && SIGNUP</a>
                 @endguest
             </div>
             <div class="card card-feeds w-50 h-50 text-white  d-flex align-items-center justify-content-center ml-4 shadow-lg rounded">

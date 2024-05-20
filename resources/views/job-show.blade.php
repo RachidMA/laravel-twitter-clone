@@ -15,6 +15,7 @@
 @empty
 <p class="text-muted text
 -center py-5">No comments yet.</p>
+
 @endforelse
 
 @endsection
