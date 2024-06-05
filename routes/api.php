@@ -21,4 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //ROUTE TO RETURN ALL POSTS
 Route::get("/posts", [PostController::class, 'index']);
-Route::get('/posts/{post}/show', [PostController::class, 'show'])->name('posts.show');
+
+//CREATE AUTHENTICATION ROUTES
+Route::middleware(['auth:sanctum'])->prefix('/posts')->group(function () {
+    Route::get('/{post}/show', [PostController::class, 'show'])->name('posts.show');
+});

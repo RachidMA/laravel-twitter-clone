@@ -18,7 +18,7 @@ class PostResource extends JsonResource
 
         //FOR RETURN COLLECTION OF POST
         $collectioOfPost = [
-            'id' => $this->id,
+            'id' => (string) $this->id,
             'title' => $this->title,
             'description' => $this->description,
             'Category' => $this->category->name,
@@ -29,7 +29,7 @@ class PostResource extends JsonResource
         //URL: http://127.0.0.1:8000/api/posts/{post}/show
         $singlePost = [
             'type' => 'SINGLE POST',
-            'id' => $this->id,
+            'id' => (string)$this->id,
             'title' => $this->title,
             'description' => $this->description,
             'Category' => $this->category->name,
