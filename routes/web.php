@@ -60,10 +60,10 @@ Route::middleware(['auth', 'member'])
     });
 
 
+//ADMIN ROUTES TO CONTROL WEBSITE STATICS
 //ADMIN ROUTES
 Route::middleware(['auth'])->prefix('admin')
     ->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     });
-
 Auth::routes();
